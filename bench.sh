@@ -3,7 +3,7 @@
 set -e
 
 BASEDIR=$(readlink -f $(dirname $0))
-
+MONGO_URL_OPTS="readPreference=secondaryPreferred&maxPoolSize=25&authSource=admin"
 [ -z $MONGO_URL_PREFIX ] && MONGO_URL_PREFIX=mongodb://localhost:27017
 
 WORKLOAD_A_LOAD_THREADS=2
@@ -11,7 +11,7 @@ WORKLOAD_A_LOAD_QPS=1000
 WORKLOAD_A_RUN_THREADS=2
 WORKLOAD_A_RUN_QPS=1000
 WORKLOAD_A_DB_NAME=ycsb_a
-WORKLOAD_A_DB_URL="${MONGO_URL_PREFIX}/${WORKLOAD_A_DB_NAME}?readPreference=secondaryPreferred&maxPoolSize=25&authSource=admin"
+WORKLOAD_A_DB_URL="${MONGO_URL_PREFIX}/${WORKLOAD_A_DB_NAME}?${MONGO_URL_OPTS}"
 WORKLOAD_A_FLAGS="-p recordcount=100000 \
         -p operationcount=1000000 \
         -p readproportion=0.5 \
@@ -25,7 +25,7 @@ WORKLOAD_B_LOAD_QPS=500
 WORKLOAD_B_RUN_THREADS=2
 WORKLOAD_B_RUN_QPS=500
 WORKLOAD_B_DB_NAME=ycsb_b
-WORKLOAD_B_DB_URL="${MONGO_URL_PREFIX}/${WORKLOAD_B_DB_NAME}?readPreference=secondaryPreferred&maxPoolSize=25&authSource=admin"
+WORKLOAD_B_DB_URL="${MONGO_URL_PREFIX}/${WORKLOAD_B_DB_NAME}?${MONGO_URL_OPTS}"
 WORKLOAD_B_FLAGS="-p recordcount=100000 \
         -p operationcount=500000 \
         -p readproportion=0.8 \

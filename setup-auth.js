@@ -1,43 +1,42 @@
-db.createRole({
-        "role": "ycsbMongoRunner",
-        "privileges": [
-                {
-                        "resource": {
-                                "db": "ycsb_a",
-                                "collection": "usertable"
-                        },
-                        "actions": [
-                                "createIndex",
-                                "enableSharding",
-                                "dropDatabase",
-                                "insert",
-                                "update",
-                                "remove",
-                                "find"
-                        ]
-                },
-                {
-                        "resource": {
-                                "db": "ycsb_b",
-                                "collection": "usertable"
-                        },
-                        "actions": [
-                                "createIndex",
-                                "enableSharding",
-                                "dropDatabase",
-                                "insert",
-                                "update",
-                                "remove",
-                                "find"
-                        ]
-                }
-        ],
-        "roles": []
+db.getSiblingDB("admin").dropRole("ycsbMongoRunner");
+db.getSiblingDB("admin").createRole({
+	"role" : "ycsbMongoRunner",
+	"privileges" : [
+		{
+			"resource" : {
+				"db" : "ycsb_a",
+				"collection" : "usertable"
+			},
+			"actions" : [
+				"enableSharding"
+			]
+		},
+		{
+			"resource" : {
+				"db" : "ycsb_b",
+				"collection" : "usertable"
+			},
+			"actions" : [
+				"enableSharding"
+			]
+		}
+	],
+	"roles" : [
+		{
+			"db" : "ycsb_a",
+			"role" : "readWrite"
+		},
+		{
+			"db" : "ycsb_b",
+			"role" : "readWrite"
+		}
+	]
 });
-db.createUser({
-        "user": "ycsbMongoRunner",
-        "pwd": "123456",
-        "roles": [
-                "ycsbMongoRunner"
+db.getSiblingDB("admin").dropUser("ycsbMongoRunner");
+db.getSiblingDB("admin").createUser({
+        "user" : "ycsbMongoRunner",
+        "pwd" : "123456",
+        "roles" : [
+		{ "db": "admin", "role": "ycsbMongoRunner" }
         ]
 });
