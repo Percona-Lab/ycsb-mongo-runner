@@ -1,5 +1,2 @@
-BUILD
-BUILDROOT
-RPMS
+build
 ycsb-*.tar.gz
-
