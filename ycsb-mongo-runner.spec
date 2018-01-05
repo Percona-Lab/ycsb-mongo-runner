@@ -2,7 +2,7 @@
 %define run_user nobody
 
 Name:		ycsb-mongo-runner
-Version:	0.12.0
+Version:	%{version}
 Release:	1%{?dist}
 Summary:	ycsb-mongo-runner
 
