@@ -8,8 +8,8 @@ Summary:	ycsb-mongo-runner
 
 Group:		Software/Databases
 License:	Apache 2.0
-URL:		http://
-Source0:	ycsb-%{version}.tar.gz
+URL:		https://github.com/Percona-Lab/ycsb-mongo-runner
+Source0:	https://github.com/brianfrankcooper/YCSB/releases/download/%{version}/ycsb-%{version}.tar.gz
 Source1:	bench.sh
 Source2:	bench-workload.sh
 Source3:	deleter.js
