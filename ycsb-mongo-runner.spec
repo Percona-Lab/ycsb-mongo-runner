@@ -15,6 +15,7 @@ Source2:	bench-workload.sh
 Source3:	deleter.js
 Source4:	setup-auth.js
 Prefix:		/opt
+BuildArch:	noarch
 
 Requires:	java-1.8.0-openjdk
 
